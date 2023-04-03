@@ -1,0 +1,23 @@
+.middle-section {
+  display: flex;
+  justify-content: center;
+  @media only screen and (max-width: 1600px) {
+    width: 1280px;
+  }
+  @media only screen and (max-width: 1500px) {
+    width: 1180px;
+  }
+  @media only screen and (max-width: 1400px) {
+    width: 1080px;
+  }
+  @media only screen and (max-width: 1200px) {
+    width: 980px;
+  }
+  .left, .right {
+    width: 50%;
+    img{
+      width: auto;
+      height: 22em;
+  }
+}
+}

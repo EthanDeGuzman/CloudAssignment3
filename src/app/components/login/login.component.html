@@ -1,0 +1,56 @@
+
+<div class="container h-100 middle-section">
+  <div class="row h-100 align-items-center justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-6">
+      <div class="row mb-3">
+        <div class="col text-center">
+          <img src="../assets/images/logo-nobg.png"
+               alt="SocialBox"
+               class="logo fade-in"/>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <form>
+            <div class="form-group">
+              <label class="form-label" for="username"><i class="bi bi-person-circle"></i> Username</label>
+              <input type="text" placeholder="First Name" class="form-control form-control-lg" #username required/>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="password"><i class="bi bi-lock-fill"></i> Password</label>
+              <input type="text" placeholder="Password" class="form-control form-control-lg" #userPassword required/>
+            </div>
+            
+            <div class="text-center m-3">
+              <button type="submit"
+                      id="login"
+                      class="btn btn-primary"
+                      id="login"
+                      data-cy="login"
+                      >Login</button>
+            </div>
+
+            <div class="row">
+              <div class="col-6">
+                <div class="text-right"><button type="button"
+                          class="btn btn-outline-secondary btn-sm">
+                          <small>Forgot Username?</small></button></div>
+              </div>
+              <div class="col-6">
+                <div class="text-left"><button type="button"
+                          class="btn btn-outline-secondary btn-sm">
+                          <small>Forgot Password?</small></button></div>
+              </div>
+            </div>
+
+            <div class="form-group reglink mt-3 text-center text-primary">
+              <a routerLink="/register" tabindex="0">Don't have an account? Click <span>here</span> to create one!</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
