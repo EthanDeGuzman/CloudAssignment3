@@ -1,11 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'WebAppPro400';
 
+export class AppComponent implements OnInit {
+  hideHeaderAndSideNav: boolean = false;
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        const routePath = this.router.url;
+        if (routePath.includes('/login') || routePath.includes('/register')) {
+          this.hideHeaderAndSideNav = true;
+        } else {
+          this.hideHeaderAndSideNav = false;
+        }
+      }
+    });
+  }
 }

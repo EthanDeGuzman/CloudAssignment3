@@ -1,4 +1,4 @@
-<div class="container middle-section">
+<div class="container middle-section" *ngIf="user">
     <div class="row">
         <div class="col-md-8">
             <div class="card">
@@ -11,7 +11,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="username">Username</label>
-                                    <input type="text" class="form-control" placeholder="Username">
+                                    <input type="text" class="form-control" placeholder="Username" name="preferred_username" [(ngModel)]="user.preferred_username"> 
                                 </div>
                             </div>
                         </div>
@@ -20,36 +20,31 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="email">Email address</label>
-                                    <input type="email" class="form-control" placeholder="Email">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="firstName">First Name</label>
-                                    <input type="text" class="form-control" placeholder="First Name">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="lastName">Surname</label>
-                                    <input type="text" class="form-control" placeholder="Surname">
+                                    <input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="user.email">
                                 </div>
                             </div>
                         </div>
                         
                         <div class="row">
-                            <div class="col-md-12">
+                            <!--
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>About Me</label>
-                                    <textarea rows="5" class="form-control" placeholder="Here can be your description"></textarea>
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" class="form-control" placeholder="First Name" name="given_name" [(ngModel)]="user.attributes.given_name">
                                 </div>
                             </div>
-                        </div>
-
-                        <button type="submit" class="btn btn-info btn-fill mt-4">Update Profile</button>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="lastName">Surname</label>
+                                    <input type="text" class="form-control" placeholder="Surname" name="familyName" [(ngModel)]="user.familyName">
+                                </div>
+                            </div>
+                            -->
+                        </div> 
+                        
+                        
+                        <button type="submit" class="btn btn-info btn-fill mt-4" (click)="updateProfile()">Update Profile</button>
                         
                     </form>
                 </div>

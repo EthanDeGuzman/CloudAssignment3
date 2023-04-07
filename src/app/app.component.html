@@ -1,9 +1,9 @@
-<div>
+<div style="background-image: url('../../../assets/background/background.jpeg'); background-size: cover">
   <div class="header">
     <app-header></app-header>
   </div>
   <div class="main-container">
-    <div class="side-nav">
+    <div class="side-nav" *ngIf="!hideHeaderAndSideNav">
       <app-side-nav></app-side-nav>
     </div>
     <div class="main">

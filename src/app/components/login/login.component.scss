@@ -5,13 +5,12 @@
 .reglink {
   cursor: pointer;
   counter-reset:#113c60;
-  a {
-    span {
-      color: #113c60;
-    }
+  a{
+    text-decoration: none;
+    color: black;
   }
   a:hover {
-    color: #113c60;
+    color: blue;
   }
 }
 
@@ -70,11 +69,13 @@
 .middle-section {
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 82vh;
     @media only screen and (max-width: 1600px) {
-      width: 1280px;
+      width: 1680px;
     }
     @media only screen and (max-width: 1500px) {
-      width: 1180px;
+      width: 1480px;
     }
     @media only screen and (max-width: 1400px) {
       width: 1080px;
@@ -82,4 +83,4 @@
     @media only screen and (max-width: 1200px) {
       width: 980px;
     }
-  }
+}

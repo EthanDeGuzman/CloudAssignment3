@@ -1,6 +1,6 @@
 
-<div class="container h-100 middle-section">
-  <div class="row h-100 align-items-center justify-content-center">
+<div class="container middle-section" *ngIf="user">
+  <div class="row align-items-center justify-content-center">
     <div class="col-12 col-md-8 col-lg-6 col-xl-6">
       <div class="row mb-3">
         <div class="col text-center">
@@ -10,42 +10,64 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="alert alert-danger m-3" *ngIf="showAlert" role="alert" style="text-align: center;">
+        {{alertMessage}}
+      </div>
+
+
+      <div class="row" *ngIf="!isForgotPassword">
         <div class="col">
           <form>
             <div class="form-group">
-              <label class="form-label" for="username"><i class="bi bi-person-circle"></i> Username</label>
-              <input type="text" placeholder="First Name" class="form-control form-control-lg" #username required/>
+              <label class="form-label" for="email"><i class="bi bi-person-circle"></i> Email Address</label>
+              <input type="email" placeholder="Email Address" class="form-control form-control-lg" name="email" [(ngModel)]="user.email" required/>
             </div>
             
             <div class="form-group">
               <label class="form-label" for="password"><i class="bi bi-lock-fill"></i> Password</label>
-              <input type="text" placeholder="Password" class="form-control form-control-lg" #userPassword required/>
+              <input type="password" placeholder="Password" class="form-control form-control-lg" name="password" [(ngModel)]="user.password" required/>
             </div>
             
             <div class="row mt-3">
               <div class="col-6">
                 <div class="text-left"><button type="button"
-                          class="btn btn-outline-secondary btn-sm"
-                          style="width: 100%;">
+                          class="btn btn-secondary btn-sm"
+                          style="width: 100%;" (click)="forgotPasswordClicked()">
                           <small>Forgot Password?</small></button></div>
               </div>
               <div class="col-6">
                 <div class="text-left"><button type="submit"
                   id="login"
-                  class="btn btn-outline-primary btn-sm"
-                  style="width: 100%;">
+                  class="btn btn-primary btn-sm"
+                  style="width: 100%;" (click)="signIn()">
                   <small>Login</small></button>
                 </div>
               </div>
             </div>
 
             <div class="form-group reglink mt-3 text-center text-primary">
-              <a routerLink="/register" tabindex="0">Don't have an account? Click <span>here</span> to create one!</a>
+              <a routerLink="/register" tabindex="0">Don't have an account? Click here to create one!</a>
             </div>
           </form>
         </div>
       </div>
+      
+      <div class="row" *ngIf="isForgotPassword">
+          <div class="col text-center mt-2">
+              <h3>Account Recovery</h3>
+              <h4 style="color: green">A verification code has been sent to {{user.email}}</h4>
+          </div>
+      </div>
+
+      <div class="row" *ngIf="isForgotPassword">
+        <div class="col-md-12 text-center mt-3" >
+          <input type="text" placeholder="Verification Code" class="form-control form-control-md" name="code" [(ngModel)]="user.code" required/>
+          <input type="password" placeholder="New Password" class="form-control form-control-md mt-3" name="password" [(ngModel)]="newPassword" required/>
+
+          <button (click)="newPasswordSubmit()" class="btn btn-primary mt-3">Submit New Password</button>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

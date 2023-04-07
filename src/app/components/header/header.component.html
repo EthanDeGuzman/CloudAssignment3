@@ -2,9 +2,20 @@
     <div class="logo">
       <a class="logo-image" href="/home"><img src="../assets/images/logo-nobg.png" alt="Logo"></a>
     </div>
-    <div class="user">
-      <div class="user-name">Ethan</div>
-      <div class="user-image">ED</div>
-    </div>  
+    
+    <div class="user" (click)="toggleDropdown()" *ngIf="isSignedIn">
+      <div class="user-name">{{ username }}</div>
+      <div class="user-image">{{ userImage }}</div>
+      <div class="dropdown m-3" *ngIf="showDropdown">
+        <button (click)="goToProfile()" class="btn btn-primary" style="margin-right: 1em;">Profile</button>
+        <button (click)="signOut()" class="btn btn-danger">Signout</button>
+      </div>
+    </div>
+
+    <div class="user" *ngIf="!isSignedIn">
+      <button class="user-name btn btn-primary" *ngIf="!isSignedIn" routerLink="/login" style="margin-right: 1em;">Sign In</button>
+      <button class="btn btn-secondary" *ngIf="!isSignedIn" routerLink="/register">Sign Up</button>
+    </div>
 
 </div>
+
