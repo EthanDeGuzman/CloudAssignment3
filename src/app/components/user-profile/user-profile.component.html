@@ -1,17 +1,25 @@
-<div class="container middle-section" *ngIf="user">
+<div class="container middle-section" *ngIf="user && profile">
     <div class="row">
         <div class="col-md-8">
+            <div class="alert alert-danger m-3" *ngIf="showAlert" role="alert" style="text-align: center;">
+                {{alertMessage}}
+            </div>
+            <div class="alert alert-success m-3" *ngIf="isConfirm" role="alert" style="text-align: center;">
+                {{alertMessage}}
+            </div>
+
             <div class="card">
                 <div class="header">
                     <h4 class="title">Edit Profile</h4>
                 </div>
+                  
                 <div class="content">
                     <form>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="username">Username</label>
-                                    <input type="text" class="form-control" placeholder="Username" name="preferred_username" [(ngModel)]="user.preferred_username"> 
+                                    <input type="text" class="form-control" name="preferred_username" [(ngModel)]="profile.preferred_username"> 
                                 </div>
                             </div>
                         </div>
@@ -20,28 +28,35 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="email">Email address</label>
-                                    <input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="user.email">
+                                    <input type="email" class="form-control" name="email" [(ngModel)]="profile.email">
                                 </div>
                             </div>
                         </div>
                         
                         <div class="row">
-                            <!--
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="firstName">First Name</label>
-                                    <input type="text" class="form-control" placeholder="First Name" name="given_name" [(ngModel)]="user.attributes.given_name">
+                                    <input type="text" class="form-control" name="given_name" [(ngModel)]="profile.givenName">
                                 </div>
                             </div>
                             
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="lastName">Surname</label>
-                                    <input type="text" class="form-control" placeholder="Surname" name="familyName" [(ngModel)]="user.familyName">
+                                    <input type="text" class="form-control" name="familyName" [(ngModel)]="profile.familyName">
                                 </div>
                             </div>
-                            -->
                         </div> 
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>About Me</label>
+                                    <textarea rows="5" class="form-control" [value]="profile.description" name="description" [(ngModel)]="profile.description"></textarea>
+                                </div>
+                            </div>
+                        </div>
                         
                         
                         <button type="submit" class="btn btn-info btn-fill mt-4" (click)="updateProfile()">Update Profile</button>
@@ -61,12 +76,12 @@
                         <a href="#" style="text-decoration: none;">
                             <img class="avatar border-gray" src="assets/icons/profile.png" style="background-color: white;"alt="..."/>
 
-                            <h4 class="title">Ethan De Guzman<br />
-                                <small>ethan.deguzman</small>
+                            <h4 class="title">{{profile.givenName}} {{profile.familyName}}<br />
+                                <small>{{profile.preferred_username}}</small>
                             </h4>
                         </a>
                     </div>
-                    <p class="description text-center"><br>Description here</p>
+                    <p class="description text-center"><br>{{profile.description}}</p>
                 </div>
             </div>
         </div>

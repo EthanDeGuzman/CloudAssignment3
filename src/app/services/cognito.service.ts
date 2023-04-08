@@ -60,4 +60,7 @@ export class CognitoService {
     });
   }
 
+  public getCurrentSession(): Promise<any>{
+    return Auth.currentSession();
+  }
 }

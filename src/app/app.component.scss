@@ -1,5 +1,7 @@
 .main-container {
     display: flex;
+    min-height: calc(100vh - 70px);
+    
     .side-nav {
       width: 350px;
       min-width: 230px;
@@ -13,6 +15,6 @@
       }
     }
     .main {
-      padding: 30px;
+      padding-top: 30px;
     }
   }

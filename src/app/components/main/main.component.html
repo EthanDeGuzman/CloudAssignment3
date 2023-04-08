@@ -17,8 +17,8 @@
                         <p class="lead">Please enter your query down below:</p>
   
                         <div class="col input-group">
-                          <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Enter your Query here" #search>
-                          <button type="submit" class="btn btn-lg btn-primary custom-search"><span class="bi bi-search"></span> Search</button>
+                          <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Enter your Query here" name="preferred_username" [(ngModel)]="query">
+                          <button type="submit" class="btn btn-lg btn-primary custom-search" (click)="searchTwitter()"><span class="bi bi-search"></span> Search</button>
                       </div>
                     </div>
                 </div>

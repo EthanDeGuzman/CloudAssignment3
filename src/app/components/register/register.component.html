@@ -77,14 +77,14 @@
       </div>
 
       <div class="row" *ngIf="isConfirm">
-        <div class="col text-center mt-2">
+        <div class="col text-center">
           <h3>Enter Code</h3>
           <h4 style="color: green">A verification code has been sent to {{user.email}}</h4>
         </div>
       </div>
 
       <div class="row form-group" *ngIf="isConfirm">
-        <div class="col-md-12 text-center mt-3" >
+        <div class="col-md-12 text-center mt-3">
           <input type="text" placeholder="Verification Code" class="form-control form-control-md" name="code" [(ngModel)]="user.code" required/>
           <button (click)="confirmSignUp()" class="btn btn-primary mt-3">Confirm</button>
         </div>
