@@ -17,6 +17,7 @@ const baseURL = "https://wzf55yplk1.execute-api.eu-west-1.amazonaws.com/dev/";
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
+
 export class MainComponent implements OnInit{
   faTwitter = faTwitter;
   query: string = '';
