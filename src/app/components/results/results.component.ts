@@ -4,7 +4,7 @@ import { CognitoService } from 'src/app/services/cognito.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { IUser } from 'src/app/interfaces/User';
+import { IUser } from 'src/app/interfaces/users';
 import { IlineChartData } from 'src/app/interfaces/lineChart';
 import { IpieChart } from 'src/app/interfaces/pieChart';
 import { IbarChartData } from 'src/app/interfaces/barChart';

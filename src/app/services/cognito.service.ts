@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Amplify, Auth } from 'aws-amplify';
-import { IUser } from '../interfaces/User';
+import { IUser } from '../interfaces/users';
 
 import { environment } from 'src/environments/environment';
 

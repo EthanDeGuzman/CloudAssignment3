@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import { IUser } from 'src/app/interfaces/User';
+import { IUser } from 'src/app/interfaces/users';
 import { IProfile } from 'src/app/interfaces/profile';
 import { CognitoService } from 'src/app/services/cognito.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';

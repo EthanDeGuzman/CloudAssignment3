@@ -4,7 +4,7 @@ import { Router} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ISchedule } from 'src/app/interfaces/schedule';
-import { IUser } from 'src/app/interfaces/User';
+import { IUser } from 'src/app/interfaces/users';
 import { IScheduleList } from 'src/app/interfaces/scheduleList';
 import { IscheduleItem } from 'src/app/interfaces/scheduleList';
 
