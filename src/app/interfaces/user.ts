@@ -5,6 +5,7 @@ export interface IUser {
     familyName: string;
     code: string;
     preferred_username: string;
+    username: string;
     attributes: {
         email: string;
         given_name: string;

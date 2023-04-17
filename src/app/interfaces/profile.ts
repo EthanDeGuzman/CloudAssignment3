@@ -5,4 +5,5 @@ export interface IProfile {
     familyName: string;
     preferred_username: string;
     description: string;
+    profile_picture: string;
 }

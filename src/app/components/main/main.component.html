@@ -5,7 +5,14 @@
           <h1 class="display-4 fw-bold" id="title">Welcome to SocialBox!</h1>
           <p class="lead">Providing a fast and easy sentimental analysis solution for our users</p>
           <hr class="my-4">
-  
+          
+          <div class="alert alert-danger m-3" *ngIf="showAlert" role="alert" style="text-align: center;">
+            {{alertMessage}}
+        </div>
+        <div class="alert alert-success m-3" *ngIf="showSuccess" role="alert" style="text-align: center;">
+            {{alertMessage}}
+        </div>
+
           <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12 col-sm-6">

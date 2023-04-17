@@ -1,0 +1,87 @@
+
+<div class="alert alert-danger m-3 text-center" *ngIf="showAlert" role="alert">
+    {{alertMessage}}
+</div>
+
+<div class="alert alert-success m-3 text-center" *ngIf="isConfirm" role="alert">
+    {{alertMessage}}
+</div>
+
+<div class="container middle-section">
+    <div class="row">
+        <div class="col-xl-6 mb-4" style="padding-right: 5em;">
+          <div class="card">
+            <div class="content">
+                <h2 class="fw-bold" id="title" >List of Schedules</h2>
+                <div *ngFor="let item of scheduleList?.ScheduleList" class="card-body d-flex justify-content-between align-items-center">
+                  <div class="d-flex align-items-center">
+                      <div>
+                      <p class="fw-bold mb-1">{{item.Title}}</p>
+                      </div>
+                  </div>
+                  <div>
+                      <button class="btn btn-danger" role="button" data-ripple-color="primary" (click)="deleteItem(item)">
+                      Delete <i class="bi bi-x-lg"></i>
+                      </button>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-xl-6" *ngIf="schedule">
+            <div class="card">                  
+                <div class="content">
+                    <h2 class="fw-bold" id="title" >Add a Schedule</h2>
+                    <form>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="title">Title</label>
+                                    <input type="text" class="form-control" id="title" placeholder="Enter Title"  name="title" [(ngModel)]="schedule.title" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="query">Query</label>
+                                    <input type="text" class="form-control" id="query" placeholder="Enter Query"  name="query" [(ngModel)]="schedule.query" required>
+                                  </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="number">Repeat</label>
+                                <input type="number" class="form-control" id="number" name="number" [(ngModel)]="schedule.number" required min="1">
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="dropdown">Interval</label>
+                                <select class="form-select" id="dropdown" name="dropdown" [(ngModel)]="selectedOption" (change)="updateRepeatValue()" required >
+                                  <option disabled [value]="null" selected>Select option</option>
+                                  <ng-container *ngIf="schedule.number <= 1">
+                                    <option value="Minute">Minute</option>
+                                    <option value="Hour">Hour</option>
+                                    <option value="Day">Day</option>
+                                  </ng-container>
+                                  <ng-container *ngIf="schedule.number > 1">                                    
+                                    <option value="Minutes">Minutes</option>
+                                    <option value="Hours">Hours</option>
+                                    <option value="Days">Days</option>
+                                  </ng-container>
+                                </select>
+                              </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3" (click)="createEvent()">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>        
+</div>

@@ -1,4 +1,12 @@
-<div class="container middle-section" *ngIf="user && profile">
+<div class="container text-center" [hidden]="!isLoading">
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</div>
+
+<div class="container middle-section" [hidden]="isLoading" *ngIf="user && profile">
     <div class="row">
         <div class="col-md-8">
             <div class="alert alert-danger m-3" *ngIf="showAlert" role="alert" style="text-align: center;">
@@ -73,13 +81,15 @@
                 </div>
                 <div class="content">
                     <div class="author">
-                        <a href="#" style="text-decoration: none;">
-                            <img class="avatar border-gray" src="assets/icons/profile.png" style="background-color: white;"alt="..."/>
-
-                            <h4 class="title">{{profile.givenName}} {{profile.familyName}}<br />
-                                <small>{{profile.preferred_username}}</small>
-                            </h4>
-                        </a>
+                        <label for="profile-picture-upload" style="cursor: pointer;">
+                            <img class="avatar border-gray" [src]="profile.profile_picture ? profile.profile_picture : 'assets/icons/profile.png'" style="background-color: white;"alt="..."/>
+                        </label>
+                    
+                        <h4 class="title">{{profile.givenName}} {{profile.familyName}}<br />
+                            <small>{{profile.preferred_username}}</small>
+                        </h4>
+                    
+                        <input id="profile-picture-upload" type="file" style="display: none;"  (change)="onFileSelected($event)" accept="image/jpeg, image/png, image/jpg"/>
                     </div>
                     <p class="description text-center"><br>{{profile.description}}</p>
                 </div>

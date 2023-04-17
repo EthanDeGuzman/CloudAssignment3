@@ -26,13 +26,6 @@ export class RegisterComponent implements OnInit{
     this.user = {} as IUser;
     this.isConfirm = false;
   }
-  
-  /* Code to get token
-  this.cognitoService.getCurrentSession()
-    .then((res) => {
-      this.token = res.getIdToken().getJwtToken();
-    })
-  */
 
   postProfile(data: any): Observable<any>{
     const header = new HttpHeaders({

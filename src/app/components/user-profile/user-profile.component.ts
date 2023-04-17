@@ -21,44 +21,98 @@ export class UserProfileComponent implements OnInit{
   isConfirm:boolean = false;
   alertMessage: string = '';
   showAlert:boolean = false;
+  token: string = '';
+  isLoading: boolean = true;
 
   constructor(private router:Router, private cognitoService: CognitoService, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.user = {} as IUser;
     this.isConfirm = false;
+    this.cognitoService.getCurrentSession()
+    .then((res) => {
+      this.token = res.getIdToken().getJwtToken();
+    })
     this.cognitoService.getUser()
     .then((user:any) => {
       if(user){
-        this.getProfile(user.attributes.preferred_username).subscribe(response => {
+        this.user = user;
+        this.getProfile(user.attributes.preferred_username, this.token).subscribe(response => {
           this.profile = response;
-          console.log(this.profile)
+          console.log(this.profile);
+          this.isLoading = false;
         });
       }
     })
   }
   
-  getProfile(username:any): Observable<any>{
-    console.log(username)
-    return this.http.get(baseURL + 'getProfile/' + username)
-  }
-
-  postProfile(data: any): Observable<any>{
+  getProfile(username:any, token:string): Observable<any>{
     const header = new HttpHeaders({
       "Content-Type": "application/json",
+      "Authorization": token
+    });
+
+    return this.http.get(baseURL + 'getProfile/' + username, {headers:header})
+  }
+
+  postProfile(data: any, token:string): Observable<any>{
+    const header = new HttpHeaders({
+      "Content-Type": "application/json",
+      "Authorization": token
     });
     
     return this.http.post(baseURL + 'saveProfile', data, {headers: header})
   }
 
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+  
+    if (file) {
+      const reader = new FileReader();
+  
+      reader.readAsDataURL(file);
+    
+      reader.onload = () => {
+        if (this.profile && reader.result !== null && reader.result !== undefined){
+          const base64String = reader.result.toString().split(',')[1];
+          this.saveImageLambda(base64String, this.token, file.name, this.profile.GUID).subscribe(response => {
+            console.log(response);
+            this.getProfile(this.user?.attributes.preferred_username, this.token).subscribe(response => {
+              this.profile = response;
+              console.log(this.profile);
+              this.isLoading = false;
+            });
+          });
+        }
+      };
+  
+      reader.onerror = (evt) => {
+        console.error("Error reading file");
+      };
+    }
+  }
+
+  saveImageLambda(fileContent: any, token:string, fileName: string, guid: string): Observable<any>{
+    const header = new HttpHeaders({
+      "Content-Type": "application/json",
+      "Authorization": token
+    });
+    
+    const data ={
+      "file_content": fileContent,
+      "fileName": fileName,
+      "GUID": guid
+    }
+    return this.http.post(baseURL + 'saveImage', data, {headers: header})
+  }
   public updateProfile(){
     if (this.profile && (this.profile.preferred_username || this.profile.email ||
        this.profile.givenName || this.profile.familyName || this.profile.description)){
         console.log(this.profile) 
-        this.postProfile(this.profile).subscribe(response => {
+        this.postProfile(this.profile, this.token).subscribe(response => {
           console.log(response);
         });
-       }
+    }
 
     
     if (this.profile && (this.profile.preferred_username || this.profile.email)){
@@ -71,7 +125,7 @@ export class UserProfileComponent implements OnInit{
       .then(() => {
         this.showAlert = false;
         this.isConfirm = true;
-        this.alertMessage = "Successfully updated your profile"
+        this.alertMessage = "Successfully updated your profile";
       })
       .catch((error:any) =>{
         this.displayAlert(error.message)

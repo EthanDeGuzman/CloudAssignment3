@@ -51,7 +51,7 @@
     margin: 10px;
     box-shadow: 5px 5px 5px #939393;
     &.left {
-      width: 600px;
+      width: 670px;
       @media only screen and (max-width: 1200px) {
         width: 570px;
       }
@@ -72,4 +72,14 @@
       }
     }
   }
+}
+
+.spinner-border {
+  width: 30vh;
+  height: 30vh;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  color: white;
+  border-width: 0.5em; /* increase border thickness */
 }
