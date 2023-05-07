@@ -1,0 +1,173 @@
+<section class="bg-primary padding-y-sm">
+    <div class="container">
+      <ol class="breadcrumb ondark steps">
+        <li class="breadcrumb-item"> <a routerLink="/home">1. Home</a>  </li>
+        <li class="breadcrumb-item active"> 2. Order info  </li>
+        <li class="breadcrumb-item"> 3. Payment   </li>
+        </ol>
+    </div> 
+    </section>
+
+    <section class="padding-y bg-light">
+    <div class="container">
+    
+    <div class="row" *ngIf="orderInfo">
+      <div class="alert alert-danger m-3" *ngIf="showAlert" role="alert" style="text-align: center;">
+        {{alertMessage}}
+      </div>
+      <main class="col-xl-8 col-lg-8">
+        <article class="card">
+          <div class="content-body">
+            <h5 class="card-title"> Checkout </h5>
+              <div class="row">
+                <div class="col-6 mb-3">
+                  <label class="form-label">First name</label>
+                  <input type="text" class="form-control" placeholder="Type here" [(ngModel)]="orderInfo.first_name" required>
+                </div>
+                <div class="col-6">
+                  <label class="form-label">Last name</label>
+                  <input type="text" class="form-control" placeholder="Type here" [(ngModel)]="orderInfo.surname" required>
+                </div>
+                <div class="col-6 mb-3">
+                  <label class="form-label">Phone</label>
+                  <input type="text" class="form-control" placeholder="Telephone here" [(ngModel)]="orderInfo.phone" required>
+                </div>
+                <div class="col-6 mb-3">
+                  <label class="form-label">Email</label>
+                  <input type="text" class="form-control" placeholder="example@gmail.com" [(ngModel)]="orderInfo.email" required>
+                </div>
+              </div>
+
+              <hr class="my-4">
+              <h5 class="card-title"> Shipping info </h5> 
+              <div class="row mb-3">
+                <div class="col-lg-4 mb-3">
+                  <div class="box box-check">
+                    <label class="form-check" >
+                      <input class="form-check-input" type="radio" name="dostavka" checked value="express" [(ngModel)]="orderInfo.delivery">
+                      <b class="border-oncheck"></b>
+                      <span class="form-check-label">
+                         Express delivery  <br>
+                        <small class="text-muted">Next day delivery</small>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-lg-4 mb-3">
+                  <div class="box box-check">
+                    <label class="form-check">
+                      <input class="form-check-input" type="radio" name="dostavka" value="post" [(ngModel)]="orderInfo.delivery">
+                      <b class="border-oncheck"></b>
+                      <span class="form-check-label">
+                        Post office <br>
+                        <small class="text-muted">3-7 days via post</small>
+                      </span>
+                    </label>
+                  </div>
+                </div> 
+                <div class="col-lg-4 mb-3">
+                  <div class="box box-check">
+                    <label class="form-check">
+                      <input class="form-check-input" type="radio" name="dostavka" value="self pick-up" [(ngModel)]="orderInfo.delivery">
+                      <b class="border-oncheck"></b>
+                      <span class="form-check-label">
+                         Self pick-up  <br>
+                        <small class="text-muted"> Come to our shop </small>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="row">
+                <div class="col-sm-12 mb-3">
+                  <label for="" class="form-label">Address</label>
+                  <input type="text" class="form-control"  placeholder="Type here" [(ngModel)]="orderInfo.address" required>
+                </div>
+    
+                <div class="col-sm-6 mb-3">
+                  <label for="" class="form-label">County*</label>
+                  <select class="form-select" id="city*" aria-label="City*" [(ngModel)]="orderInfo.county" required>
+                    <option value="Donegal">Donegal</option>
+                    <option value="Sligo">Sligo</option>
+                    <option value="Dublin">Dublin</option>
+                    <option value="Cork">Cork</option>
+                    <option value="Kerry">Kerry</option>
+                  </select>
+                </div>
+    
+                <div class="col-sm-6 col-6 mb-3">
+                  <label for="" class="form-label">Postal code</label>
+                  <input type="text" class="form-control"  placeholder="" [(ngModel)]="orderInfo.postal_code" required>
+                </div>
+                
+                <div class="col-sm-6 col-6 mb-3">
+                  <label for="" class="form-label">Card holder's name</label>
+                  <input type="text" class="form-control"  placeholder="Type here" [(ngModel)]="orderInfo.cardName" required>
+                </div>
+
+                <div class="col-sm-6 col-6 mb-3">
+                  <label for="" class="form-label">Card holder's number</label>
+                  <input type="text" class="form-control"  placeholder="Type here" [(ngModel)]="orderInfo.cardNumber" required>
+                </div>
+
+                <div class="col-sm-6 col-6 mb-3">
+                  <label for="" class="form-label">Valid Until</label>
+                  <input type="text" class="form-control"  placeholder="" [(ngModel)]="orderInfo.valid_until" required>
+                </div>
+
+                <div class="col-sm-6 col-6 mb-3">
+                  <label for="" class="form-label">CVC</label>
+                  <input type="text" class="form-control"  placeholder="" [(ngModel)]="orderInfo.cvc"required>
+                </div>
+              </div>
+
+              <div class="float-end">
+                <button class="btn btn-light" style="margin-right: 1em;">Cancel</button>
+                <button class="btn btn-success" (click)="continue()">Continue</button>
+              </div>
+              
+          </div>
+        </article>
+
+      </main> 
+      <aside class="col-xl-4 col-lg-4">
+        <article class="ms-lg-4 mt-4 mt-lg-0" style="max-width: 320px">
+            <h6 class="card-title">Summary</h6>
+            
+            <dl class="dlist-align mt-3">
+              <dt>Total price:</dt>
+              <dd class="text-end"> ${{this.totalPrice}}</dd>
+            </dl>
+            <dl class="dlist-align">
+              <dt>Shipping cost:</dt>
+              <dd class="text-end">Free</dd>
+            </dl>
+            <hr>
+            <dl class="dlist-align">
+              <dt> Total: </dt>
+              <dd class="text-end"> <strong class="text-dark">${{this.totalPrice}}</strong> </dd>
+            </dl>
+    
+            <hr>
+            <h6 class="mb-4">Items in cart</h6>
+    
+            <figure class="itemside align-items-center mb-4" *ngFor="let item of uniqueCartItems">
+              <div class="aside">
+                <b class="badge bg-secondary rounded-pill">{{item.count}}</b>
+                <img src="{{item.product.Thumbnail}}" class="img-sm rounded border">
+              </div>
+              <figcaption class="info">
+                <a href="#" class="title">{{item.product.Title}}<br> {{item.product.Category}}</a>
+                <div class="price text-muted">Total: ${{item.price}}</div>
+              </figcaption>
+            </figure>
+
+        </article> 
+      </aside>
+    </div>
+    
+    <br><br>
+    
+    </div>
+</section>

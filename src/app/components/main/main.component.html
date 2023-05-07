@@ -1,37 +1,211 @@
-<div class="container middle-section">
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="jumbotron text-center text-black" style="margin-top: 2em;">
-          <h1 class="display-4 fw-bold" id="title">Welcome to SocialBox!</h1>
-          <p class="lead">Providing a fast and easy sentimental analysis solution for our users</p>
-          <hr class="my-4">
-          
-          <div class="alert alert-danger m-3" *ngIf="showAlert" role="alert" style="text-align: center;">
-            {{alertMessage}}
-        </div>
-        <div class="alert alert-success m-3" *ngIf="showSuccess" role="alert" style="text-align: center;">
-            {{alertMessage}}
-        </div>
 
-          <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-12 col-sm-6">
-                    <div class="serviceBox blue">
-                        <h3 class="title">Twitter Analysis</h3>
-                        <div class="service-icon">
-                          <fa-icon [icon]="faTwitter"></fa-icon>
-                        </div>
-                        <p class="lead">Please enter your query down below:</p>
-  
-                        <div class="col input-group">
-                          <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Enter your Query here" name="preferred_username" [(ngModel)]="query">
-                          <button type="submit" class="btn btn-lg btn-primary custom-search" (click)="searchTwitter()"><span class="bi bi-search"></span> Search</button>
+<main *ngIf="products">
+
+    <!-- PRODUCTS -->
+    <div class="product-container">
+      <div class="container">
+        <div class="product-box">
+          <div class="product-minimal">
+
+            <div class="product-showcase">
+              <h2 class="title">New Arrivals</h2>
+              <div class="showcase-wrapper has-scrollbar">
+
+                <div class="showcase-container">
+                  <div class="showcase" *ngFor="let item of products.Products | slice:3:7">
+                    <a href="#" class="showcase-img-box disabled-link">
+                      <img src={{item.Thumbnail}} alt={{item.Description}} width="70" class="showcase-img" />
+                    </a>
+                    <div class="showcase-content">
+                      <a href="#" class="disabled-link">
+                        <h4 class="showcase-title">{{item.Title}}</h4>
+                      </a>
+                      <a href="#" class="showcase-category disabled-link">{{item.Category}}</a>
+                      <div class="price-box">
+                        <p class="price">${{item.Price}}</p>
+                        <button class="add-cart-btn" (click)="addToCart(item)">Add to Cart</button>
                       </div>
                     </div>
+                  </div>
                 </div>
+
+                <div class="showcase-container">
+                  <div class="showcase" *ngFor="let item of products.Products | slice:7:11">
+                    <a href="#" class="showcase-img-box disabled-link">
+                      <img src={{item.Thumbnail}} alt={{item.Description}} width="70" class="showcase-img" />
+                    </a>
+                    <div class="showcase-content">
+                      <a href="#" class="disabled-link">
+                        <h4 class="showcase-title">{{item.Title}}</h4>
+                      </a>
+                      <a href="#" class="showcase-category disabled-link">{{item.Category}}</a>
+                      <div class="price-box">
+                        <p class="price">${{item.Price}}</p>
+                        <button class="add-cart-btn" (click)="addToCart(item)">Add to Cart</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+
+            <div class="product-showcase">
+              <h2 class="title">Trending</h2>
+              <div class="showcase-wrapper  has-scrollbar">
+                <div class="showcase-container">
+                  <div class="showcase" *ngFor="let item of products.Products | slice:11:15">
+                    <a href="#" class="showcase-img-box disabled-link" >
+                        <img src={{item.Thumbnail}} alt={{item.Description}} width="70" class="showcase-img" />
+                      </a>
+                      <div class="showcase-content">
+                        <a href="#" class="disabled-link">
+                          <h4 class="showcase-title">{{item.Title}}</h4>
+                        </a>
+                        <a href="#" class="showcase-category disabled-link">{{item.Category}}</a>
+                        <div class="price-box">
+                          <p class="price">${{item.Price}}</p>
+                          <button class="add-cart-btn" (click)="addToCart(item)">Add to Cart</button>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+            
+                <div class="showcase-container">
+                    <div class="showcase" *ngFor="let item of products.Products | slice:15:19">
+                        <a href="#" class="showcase-img-box disabled-link">
+                            <img src={{item.Thumbnail}} alt={{item.Description}} width="70" class="showcase-img" />
+                        </a>
+                        <div class="showcase-content">
+                            <a href="#" class="disabled-link">
+                                <h4 class="showcase-title">{{item.Title}}</h4>
+                            </a>
+                            <a href="#" class="showcase-category disabled-link">{{item.Category}}</a>
+                            <div class="price-box">
+                                <p class="price">${{item.Price}}</p>
+                                <button class="add-cart-btn" (click)="addToCart(item)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-showcase">
+                <h2 class="title">Top Rated</h2>
+                <div class="showcase-wrapper  has-scrollbar">
+                  <div class="showcase-container">
+                    <div class="showcase" *ngFor="let item of products.Products | slice:19:23">
+                      <a href="#" class="showcase-img-box disabled-link">
+                          <img src={{item.Thumbnail}} alt={{item.Description}} width="70" class="showcase-img" />
+                        </a>
+                        <div class="showcase-content">
+                          <a href="#" class="disabled-link">
+                            <h4 class="showcase-title">{{item.Title}}</h4>
+                          </a>
+                          <a href="#" class="showcase-category disabled-link">{{item.Category}}</a>
+                          <div class="price-box">
+                            <p class="price">${{item.Price}}</p>
+                            <button class="add-cart-btn" (click)="addToCart(item)">Add to Cart</button>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+              
+                  <div class="showcase-container">
+                      <div class="showcase" *ngFor="let item of products.Products | slice:23:27">
+                          <a href="#" class="showcase-img-box disabled-link">
+                              <img src={{item.Thumbnail}} alt={{item.Description}} width="70" class="showcase-img" />
+                          </a>
+                          <div class="showcase-content">
+                              <a href="#" class="disabled-link">
+                                  <h4 class="showcase-title">{{item.Title}}</h4>
+                              </a>
+                              <a href="#" class="showcase-category disabled-link">{{item.Category}}</a>
+                              <div class="price-box">
+                                  <p class="price">${{item.Price}}</p>
+                                  <button class="add-cart-btn" (click)="addToCart(item)">Add to Cart</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+       
+          <!-- PRODUCT DAILY DEAL -->
+          <div class="product-featured">
+            <h2 class="title">Deal of the day</h2>
+            <div class="showcase-wrapper has-scrollbar">
+              <div class="showcase-container" *ngFor="let item of products.Products | slice:27:31">
+                <div class="showcase">
+                  <div class="showcase-banner">
+                    <img src={{item.Thumbnail}} alt={{item.Description}} style="height: 20em;" class="showcase-img" />
+                  </div>
+                  <div class="showcase-content">  
+                    <div class="showcase-rating">
+                      <ion-icon [name]="item.Rating >= 1 ? 'star' : 'star-outline'"></ion-icon>
+                      <ion-icon [name]="item.Rating >= 2 ? 'star' : 'star-outline'"></ion-icon>
+                      <ion-icon [name]="item.Rating >= 3 ? 'star' : 'star-outline'"></ion-icon>
+                      <ion-icon [name]="item.Rating >= 4 ? 'star' : 'star-outline'"></ion-icon>
+                      <ion-icon [name]="item.Rating >= 5 ? 'star' : 'star-outline'"></ion-icon>
+                    </div>
+                    <a href="#" class="disabled-link">
+                      <h3 class="showcase-title">{{item.Title}}</h3>
+                    </a>
+                    <p class="showcase-desc">
+                      {{item.Description}}
+                    </p>
+                    <div class="price-box">
+                      <p class="price">${{item.Price}}</p>
+                      <button class="add-cart-btn" (click)="addToCart(item)">Add to Cart</button>
+                    </div>
+                    
+                    <div class="showcase-status">
+                      <div class="wrapper">
+                        <p>
+                          Available: <b>{{item.Stock}}</b>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- New Products-->
+          <div class="product-main">
+            <h2 class="title">New Products</h2>
+            <div class="product-grid">
+              <div class="showcase" *ngFor="let item of products.Products | slice:31:43">
+                <div class="showcase-banner">
+                  <img src={{item.Thumbnail}} alt={{item.Description}} style="height: 16em;" class="product-img" />
+                  <div class="showcase-actions">
+                    <button class="btn-action" (click)="addToCart(item)">
+                      <ion-icon name="bag-handle-outline"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="showcase-content">
+                  <a href="#" class="showcase-category disabled-link">{{item.Category}}</a>
+                  <a href="#" class="disabled-link">
+                    <h3 class="showcase-title">{{item.Title}}</h3>
+                  </a>
+                  <div class="showcase-rating">
+                    <ion-icon [name]="item.Rating >= 1 ? 'star' : 'star-outline'"></ion-icon>
+                      <ion-icon [name]="item.Rating >= 2 ? 'star' : 'star-outline'"></ion-icon>
+                      <ion-icon [name]="item.Rating >= 3 ? 'star' : 'star-outline'"></ion-icon>
+                      <ion-icon [name]="item.Rating >= 4 ? 'star' : 'star-outline'"></ion-icon>
+                      <ion-icon [name]="item.Rating >= 5 ? 'star' : 'star-outline'"></ion-icon>
+                  </div>
+                  <div class="price-box">
+                    <p class="price">${{item.Price}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+    </div>   
+</main>

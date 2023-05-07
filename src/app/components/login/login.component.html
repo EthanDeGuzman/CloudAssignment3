@@ -1,22 +1,16 @@
+<div class="container" *ngIf="user">
+	<div class="d-flex justify-content-center h-100">
 
-<div class="container middle-section" *ngIf="user">
-  <div class="row align-items-center justify-content-center">
-    <div class="col-12 col-md-8 col-lg-6 col-xl-6">
-      <div class="row mb-3">
-        <div class="col text-center">
-          <img src="../assets/images/logo-nobg.png"
-               alt="SocialBox"
-               class="logo fade-in"/>
-        </div>
-      </div>
+		<div class="card" *ngIf="!isForgotPassword">
+			<div class="card-header">
+				<h3>Sign In</h3>
+			</div>
+			<div class="card-body">
+          <div class="alert alert-danger m-3" *ngIf="showAlert" role="alert" style="text-align: center;">
+            {{alertMessage}}
+          </div>
 
-      <div class="alert alert-danger m-3" *ngIf="showAlert" role="alert" style="text-align: center;">
-        {{alertMessage}}
-      </div>
-
-      <div class="row" *ngIf="!isForgotPassword">
-        <div class="col">
-          <form>
+					<form>
             <div class="form-group">
               <label class="form-label" for="email"><i class="bi bi-person-circle"></i> Email Address</label>
               <input type="email" placeholder="Email Address" class="form-control form-control-lg" name="email" [(ngModel)]="user.email" required/>
@@ -43,30 +37,32 @@
                 </div>
               </div>
             </div>
-
-            <div class="form-group reglink mt-3 text-center text-primary">
-              <a routerLink="/register" tabindex="0">Don't have an account? Click here to create one!</a>
-            </div>
           </form>
+			</div>
+			<div class="card-footer">
+        <div class="d-flex justify-content-center reglink">
+          <a routerLink="/register" tabindex="0">Don't have an account? Click here to create one!</a>
         </div>
-      </div>
-      
-      <div class="row" *ngIf="isForgotPassword">
-          <div class="col text-center mt-2">
-              <h3>Account Recovery</h3>
-              <h4 style="color: green">A verification code has been sent to {{user.email}}</h4>
-          </div>
-      </div>
+			</div>
+		</div>
 
-      <div class="row" *ngIf="isForgotPassword">
-        <div class="col-md-12 text-center mt-3" >
-          <input type="text" placeholder="Verification Code" class="form-control form-control-md" name="code" [(ngModel)]="user.code" required/>
-          <input type="password" placeholder="New Password" class="form-control form-control-md mt-3" name="password" [(ngModel)]="newPassword" required/>
-
-          <button (click)="newPasswordSubmit()" class="btn btn-primary mt-3">Submit New Password</button>
+    <div class="card" *ngIf="isForgotPassword">
+      <div class="card-header">
+				<h3>Account Recovery</h3>
+			</div>
+      <div class="card-body">
+        <div class="alert alert-danger m-3" *ngIf="showAlert" role="alert" style="text-align: center;">
+          {{alertMessage}}
         </div>
-      </div>
+        <h4 style="color: green">A verification code has been sent to {{user.email}}</h4>
 
+        <input type="text" placeholder="Verification Code" class="form-control form-control-md" name="code" [(ngModel)]="user.code" required/>
+        <input type="password" placeholder="New Password" class="form-control form-control-md mt-3" name="password" [(ngModel)]="newPassword" required/>
+  
+        <button (click)="newPasswordSubmit()" class="btn btn-primary mt-3">Submit New Password</button>
+      </div>
     </div>
-  </div>
+
+	</div>
 </div>
+

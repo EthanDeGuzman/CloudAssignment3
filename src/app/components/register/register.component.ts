@@ -5,7 +5,7 @@ import { Router} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const baseURL = "https://wzf55yplk1.execute-api.eu-west-1.amazonaws.com/dev/";
+const baseURL = "https://myvluvldg4.execute-api.eu-west-1.amazonaws.com/dev/";
 
 @Component({
   selector: 'app-register',
@@ -36,10 +36,6 @@ export class RegisterComponent implements OnInit{
   }
 
   public signUpWithCognito(){
-    this.postProfile(this.user).subscribe(response => {
-      console.log(response);
-    });
-    
     if (this.user && this.user.email && this.user.password){
       
       this.cognitoService.signUp(this.user)
@@ -50,6 +46,10 @@ export class RegisterComponent implements OnInit{
       .catch((error:any) =>{
         this.displayAlert(error.message)
       })
+
+      this.postProfile(this.user).subscribe(response => {
+        console.log(response);
+      });
     }
     else{
       this.displayAlert("Missing user information.")

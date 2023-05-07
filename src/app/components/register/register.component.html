@@ -1,95 +1,81 @@
-
-<div class="container middle-section" *ngIf="user">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="row">
-        <div class="col text-center"><img src="../assets/icons/id.png"
-               alt="register icon"></div>
-      </div>
-
-      <!-- Sign Up-->
-      <div class="row" *ngIf="!isConfirm">
-        <div class="col text-center">
-          <h3>Register</h3>
+<div class="container" *ngIf="user">
+	<div class="d-flex justify-content-center h-100 pb-4">
+		<div class="card border-dark" *ngIf="!isConfirm">
+			<div class="card-header">
+				<h3>Register</h3>
+        <p>Please enter your details below to begin the registration process.</p>
+			</div>
+			<div class="card-body">
+        <div class="alert alert-danger m-3" *ngIf="showAlert" role="alert" style="text-align: center;">
+          {{alertMessage}}
         </div>
-      </div>
-      <div class="row" *ngIf="!isConfirm">
-        <div class="col text-center">
-          <p>Please enter your details below to begin the registration process.</p>
+
+        <form title="Registration Form">
+          <div class="row form-group">
+            <div class="col-md-6">
+              <label class="form-label" for="firstName">First Name</label>
+              <input type="text" placeholder="First Name" class="form-control form-control-md" name="givenName" [(ngModel)]="user.givenName" required/>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label" for="lastName">Surname</label>
+              <input type="text" placeholder="Surname" class="form-control form-control-md" name="familyName" [(ngModel)]="user.familyName" required/>
+            </div>
+          </div>
+          
+          <div class="row form-group">
+            <div class="col-md-12">
+              <label class="form-label" for="username">Username</label>
+              <input type="text" placeholder="Username" class="form-control form-control-md" name="preferred_username" [(ngModel)]="user.preferred_username" required/>
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col-md-12">
+              <label class="form-label" for="email">Email Address</label>
+              <input type="email" placeholder="Email Address" class="form-control form-control-md" name="email" [(ngModel)]="user.email" required/>
+            </div>
+          </div>
+          
+          <div class="row form-group">
+            <div class="col-md-12">
+              <label class="form-label" for="password">Password</label>
+              <input type="password" placeholder="Password" class="form-control form-control-md" name="password" [(ngModel)]="user.password" required/>
+            </div>
+          </div>
+          
+          <div class="form-group text-center">
+            <div class="row">
+              <div class="col">
+                <button type="submit"
+                        (click)="signUpWithCognito()"
+                        class="btn btn-primary">Register</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="signLink">
+              <p class="mb-0 text-center">Already have an account? <a routerLink="/login" class="fw-bold">Sign In</a></p>
+          </div>
+        </form>
+			</div>
+		</div>
+
+    <div class="card border-dark" *ngIf="isConfirm">
+      <div class="card-header">
+				<h3>Enter Code</h3>
+			</div>
+      <div class="card-body">
+        <div class="alert alert-danger m-3" *ngIf="showAlert" role="alert" style="text-align: center;">
+          {{alertMessage}}
         </div>
+        <h4 style="color: green">A verification code has been sent to {{user.email}}</h4>
+
+        <input type="text" placeholder="Verification Code" class="form-control form-control-md" name="code" [(ngModel)]="user.code" required/>
+        <button (click)="confirmSignUp()" class="btn btn-primary mt-3">Confirm</button>
       </div>
-
-      <div class="alert alert-danger m-3" *ngIf="showAlert" role="alert" style="text-align: center;">
-        {{alertMessage}}
-      </div>
-
-      <div class="row" *ngIf="!isConfirm">
-        <div class="col">
-          <form title="Registration Form">
-            <div class="row form-group">
-              <div class="col-md-6">
-                <label class="form-label" for="firstName">First Name</label>
-                <input type="text" placeholder="First Name" class="form-control form-control-md" name="givenName" [(ngModel)]="user.givenName" required/>
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label" for="lastName">Surname</label>
-                <input type="text" placeholder="Surname" class="form-control form-control-md" name="familyName" [(ngModel)]="user.familyName" required/>
-              </div>
-            </div>
-            
-            <div class="row form-group">
-              <div class="col-md-12">
-                <label class="form-label" for="username">Username</label>
-                <input type="text" placeholder="Username" class="form-control form-control-md" name="preferred_username" [(ngModel)]="user.preferred_username" required/>
-              </div>
-            </div>
-
-            <div class="row form-group">
-              <div class="col-md-12">
-                <label class="form-label" for="email">Email Address</label>
-                <input type="email" placeholder="Email Address" class="form-control form-control-md" name="email" [(ngModel)]="user.email" required/>
-              </div>
-            </div>
-            
-            <div class="row form-group">
-              <div class="col-md-12">
-                <label class="form-label" for="password">Password</label>
-                <input type="password" placeholder="Password" class="form-control form-control-md" name="password" [(ngModel)]="user.password" required/>
-              </div>
-            </div>
-            
-            <div class="form-group text-center">
-              <div class="row">
-                <div class="col">
-                  <button type="submit"
-                          (click)="signUpWithCognito()"
-                          class="btn btn-primary">Register</button>
-                </div>
-              </div>
-            </div>
-            
-            <div class="signLink">
-                <p class="mb-0 text-center">Already have an account? <a routerLink="/login" class="fw-bold">Sign In</a></p>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <div class="row" *ngIf="isConfirm">
-        <div class="col text-center">
-          <h3>Enter Code</h3>
-          <h4 style="color: green">A verification code has been sent to {{user.email}}</h4>
-        </div>
-      </div>
-
-      <div class="row form-group" *ngIf="isConfirm">
-        <div class="col-md-12 text-center mt-3">
-          <input type="text" placeholder="Verification Code" class="form-control form-control-md" name="code" [(ngModel)]="user.code" required/>
-          <button (click)="confirmSignUp()" class="btn btn-primary mt-3">Confirm</button>
-        </div>
-      </div>
-
     </div>
-  </div>
+
+	</div>
 </div>
+
