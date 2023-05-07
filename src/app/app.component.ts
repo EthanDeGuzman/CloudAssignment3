@@ -8,8 +8,7 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 
 export class AppComponent implements OnInit {
-  hideHeaderAndSideNav: boolean = false;
-
+  
   constructor(private router: Router) {}
 
   ngOnInit() {

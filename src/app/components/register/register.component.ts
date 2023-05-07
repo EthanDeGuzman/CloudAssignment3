@@ -5,7 +5,7 @@ import { Router} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const baseURL = "https://myvluvldg4.execute-api.eu-west-1.amazonaws.com/dev/";
+const baseURL = "https://sznv3gzehj.execute-api.eu-west-1.amazonaws.com/dev/";
 
 @Component({
   selector: 'app-register',
