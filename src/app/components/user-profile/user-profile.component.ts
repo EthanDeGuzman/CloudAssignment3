@@ -6,7 +6,7 @@ import { CognitoService } from 'src/app/services/cognito.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const baseURL = "https://sznv3gzehj.execute-api.eu-west-1.amazonaws.com/dev/";
+const baseURL = "https://2j7d4uu5ja.execute-api.eu-west-1.amazonaws.com/dev/";
 
 @Component({
   selector: 'app-user-profile',
